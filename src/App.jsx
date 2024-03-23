@@ -17,7 +17,7 @@ import Error from "./pages/Error";
 const router = createBrowserRouter([
   {
     element: <RootLayout />,
-    errorElement: <Error />,
+    // errorElement: <Error />,
     loader: rootLoader,
     children: [
       {
