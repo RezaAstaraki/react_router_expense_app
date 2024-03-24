@@ -15,7 +15,10 @@ import RootLayout, { rootLoader } from "./layouts/RootLayout";
 //Routes
 
 //pages
-import Dashboard, { dashboardLoader } from "./pages/Dashboard";
+import Dashboard, {
+  createAccountAction,
+  dashboardLoader,
+} from "./pages/Dashboard";
 import Error from "./pages/Error";
 import logoutAction from "./actions/logoutAction";
 
@@ -29,6 +32,7 @@ const router = createBrowserRouter([
         index: true,
         element: <Dashboard />,
         loader: dashboardLoader,
+        action: createAccountAction,
       },
       {
         path: "/logout",
