@@ -1,6 +1,5 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Outlet, useLoaderData } from "react-router-dom";
-
 //helper functions
 import { fetchData } from "../helpers";
 
@@ -18,6 +17,11 @@ export const rootLoader = () => {
 
 const RootLayout = () => {
   const { userName } = useLoaderData();
+
+  useEffect(() => {
+    // toast("Hello World");
+  }, []);
+
   return (
     <div className="layout">
       <Nav userName={userName} />
