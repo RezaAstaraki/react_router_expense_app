@@ -1,6 +1,7 @@
 import React from "react";
 import { fetchData } from "../helpers";
-import { useLoaderData } from "react-router-dom";
+import { Form, useLoaderData } from "react-router-dom";
+import Intro from "../components/Intro";
 
 //loader
 export const dashboardLoader = () => {
@@ -10,12 +11,7 @@ export const dashboardLoader = () => {
 
 const Dashboard = () => {
   const { userName } = useLoaderData();
-  return (
-    <div>
-      <h1>dash</h1>
-      <h2>{userName}</h2>
-    </div>
-  );
+  return <>{userName ? <p>{userName}</p> : <Intro />}</>;
 };
 
 export default Dashboard;
