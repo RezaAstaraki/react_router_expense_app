@@ -5,6 +5,10 @@ import {
   Route,
 } from "react-router-dom";
 
+//toastify imports
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 //layouts
 import RootLayout, { rootLoader } from "./layouts/RootLayout";
 
@@ -13,6 +17,7 @@ import RootLayout, { rootLoader } from "./layouts/RootLayout";
 //pages
 import Dashboard, { dashboardLoader } from "./pages/Dashboard";
 import Error from "./pages/Error";
+import logoutAction from "./actions/logoutAction";
 
 const router = createBrowserRouter([
   {
@@ -25,6 +30,10 @@ const router = createBrowserRouter([
         element: <Dashboard />,
         loader: dashboardLoader,
       },
+      {
+        path: "/logout",
+        action: logoutAction,
+      },
     ],
   },
 ]);
@@ -32,6 +41,18 @@ const router = createBrowserRouter([
 function App() {
   return (
     <div className="App">
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
       <RouterProvider router={router} />
     </div>
   );
