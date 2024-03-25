@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { Outlet, useLoaderData } from "react-router-dom";
-import { toast } from "react-toastify";
+
 //helper functions
 import { fetchData } from "../helpers";
 
