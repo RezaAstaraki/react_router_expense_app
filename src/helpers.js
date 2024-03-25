@@ -1,5 +1,7 @@
-export const wait = async () => {
-  new Promise((res) => setTimeout(() => {}, Math.random() * 2000));
+export const wait = async (min = 0, max = 2000) => {
+  const timeOut = Math.random() * max + min;
+  console.log("timeOut", timeOut);
+  return new Promise((res) => setTimeout(res, timeOut));
 };
 
 const generateRandomColor = () => {

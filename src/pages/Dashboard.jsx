@@ -1,23 +1,27 @@
 import React from "react";
-import { addBudget, fetchData } from "../helpers";
+import { addBudget, fetchData, wait } from "../helpers";
 import { useLoaderData } from "react-router-dom";
 import Intro from "../components/Intro";
 import { toast } from "react-toastify";
 import AddBudgetForm from "../components/AddBudgetForm";
 
-//action
+//action-------------------------------------------------------
 export const createAccountAction = async ({ request }) => {
+  await wait(500, 2000);
   const data = await request.formData();
   const formData = Object.fromEntries(data);
+  //action for add budget--------------------------------------
   if (formData._action === "addBudget") {
     try {
       console.log("formData", formData);
+
       addBudget(formData.newBudget, formData.newBudgetAmount);
       return toast.success(`${formData.newBudget} Added to budgets`);
     } catch (e) {
       throw new Error("Something went wrong with add a budget");
     }
-  } else if (formData._action === "createUser") {
+  } // action for create user------------------------------------
+  else if (formData._action === "createUser") {
     try {
       localStorage.setItem("userName", JSON.stringify(formData.userName));
 
@@ -25,7 +29,7 @@ export const createAccountAction = async ({ request }) => {
     } catch (e) {
       throw new Error("there was a problem creating your account");
     }
-  }
+  } //------------------------------------------------------------
 };
 
 //loader
