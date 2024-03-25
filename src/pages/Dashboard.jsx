@@ -1,9 +1,10 @@
 import React from "react";
-import { addBudget, fetchData, wait } from "../helpers";
+import { addBudget, addExpense, fetchData, wait } from "../helpers";
 import { useLoaderData } from "react-router-dom";
 import Intro from "../components/Intro";
 import { toast } from "react-toastify";
 import AddBudgetForm from "../components/AddBudgetForm";
+import AddExpenseForm from "../components/AddExpenseForm";
 
 //action-------------------------------------------------------
 export const createAccountAction = async ({ request }) => {
@@ -30,6 +31,20 @@ export const createAccountAction = async ({ request }) => {
       throw new Error("there was a problem creating your account");
     }
   } //------------------------------------------------------------
+  else if (formData._action === "createExpense") {
+    addExpense(
+      formData.newExpense,
+      formData.newExpenseAmount,
+      formData.newExpenseBudget
+    );
+
+    try {
+      console.log("formData", formData);
+      return toast.success(`${formData.newExpense} Added to ${"budgets"}`);
+    } catch (e) {
+      throw new Error("Something went wrong with add new Expense");
+    }
+  }
 };
 
 //loader
@@ -49,12 +64,20 @@ const Dashboard = () => {
             welcome back, <span className="accent">{userName}</span>
           </h1>
           <div className="grid-sm"></div>
-          {/* {budgets?():() } */}
-          <div className="grid-lg">
-            <div className="flex-lg">
+          {budgets && budgets.length > 0 ? (
+            <div className="grid-lg">
+              <div className="flex-lg">
+                <AddBudgetForm />
+                <AddExpenseForm budgets={budgets} />
+              </div>
+            </div>
+          ) : (
+            <div className="grid-sm">
+              <p>Personal budgeting is the secret to financial freedom.</p>
+              <p>create a budget to get started!</p>
               <AddBudgetForm />
             </div>
-          </div>
+          )}
         </div>
       ) : (
         <Intro />
