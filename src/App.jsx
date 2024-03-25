@@ -1,8 +1,8 @@
 import {
   createBrowserRouter,
   createRoutesFromElements,
-  RouterProvider,
   Route,
+  RouterProvider,
 } from "react-router-dom";
 
 //toastify imports
@@ -33,6 +33,7 @@ const router = createBrowserRouter([
         element: <Dashboard />,
         loader: dashboardLoader,
         action: createAccountAction,
+        // errorElement: <Error />,
       },
       {
         path: "/logout",

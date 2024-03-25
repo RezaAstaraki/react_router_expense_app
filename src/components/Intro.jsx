@@ -19,6 +19,7 @@ const Intro = () => {
           journey today.
         </p>
         <Form method="POST">
+          <input type="hidden" name="_action" value="createUser" />
           <input
             required
             placeholder="What is your name?"
