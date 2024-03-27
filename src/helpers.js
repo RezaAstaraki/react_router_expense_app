@@ -46,3 +46,10 @@ export const addExpense = (name, amount, budgetID) => {
     JSON.stringify([...existingExpenses, newExpense])
   );
 };
+
+export const getItems = (category, key, value) => {
+  const data = fetchData(category);
+
+  const res = data.filter((item) => item[key] === value);
+  return res;
+};

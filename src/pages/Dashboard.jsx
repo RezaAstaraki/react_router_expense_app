@@ -5,12 +5,14 @@ import Intro from "../components/Intro";
 import { toast } from "react-toastify";
 import AddBudgetForm from "../components/AddBudgetForm";
 import AddExpenseForm from "../components/AddExpenseForm";
+import Table from "../components/Table";
 
 //action-------------------------------------------------------
 export const createAccountAction = async ({ request }) => {
   await wait(500, 2000);
   const data = await request.formData();
   const formData = Object.fromEntries(data);
+  console.log("formData", formData);
   //action for add budget--------------------------------------
   if (formData._action === "addBudget") {
     try {
@@ -39,7 +41,6 @@ export const createAccountAction = async ({ request }) => {
     );
 
     try {
-      console.log("formData", formData);
       return toast.success(`${formData.newExpense} Added to ${"budgets"}`);
     } catch (e) {
       throw new Error("Something went wrong with add new Expense");
@@ -51,11 +52,12 @@ export const createAccountAction = async ({ request }) => {
 export const dashboardLoader = () => {
   const userName = fetchData("userName");
   const budgets = fetchData("budgets");
-  return { userName, budgets };
+  const expenses = fetchData("expenses");
+  return { userName, budgets, expenses };
 };
 
 const Dashboard = () => {
-  const { userName, budgets } = useLoaderData();
+  const { userName, budgets, expenses } = useLoaderData();
   return (
     <>
       {userName ? (
@@ -82,6 +84,13 @@ const Dashboard = () => {
       ) : (
         <Intro />
       )}
+
+      <div>
+        <h1>Expenses</h1>
+        <Table
+          expenses={expenses?.sort((a, b) => b.createAt - a.createAt) ?? []}
+        ></Table>
+      </div>
     </>
   );
 };
