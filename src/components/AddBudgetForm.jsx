@@ -11,7 +11,7 @@ const AddBudgetForm = () => {
   useEffect(() => {
     formRef.current.reset();
     focusRef.current.focus();
-    console.log("isSubmitting add budget", isSubmitting);
+    // console.log("isSubmitting add budget", isSubmitting);
   }, [isSubmitting]);
 
   return (

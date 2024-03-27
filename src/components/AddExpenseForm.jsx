@@ -11,7 +11,7 @@ const AddExpenseForm = ({ budgets }) => {
   useEffect(() => {
     formRef.current.reset();
     focusRef.current.focus();
-    console.log("isSubmitting add expense", isSubmitting);
+    // console.log("isSubmitting add expense", isSubmitting);
   }, [isSubmitting]);
   return (
     <div className="form-wrapper">
