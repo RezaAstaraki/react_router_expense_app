@@ -22,8 +22,7 @@ const AddExpenseForm = ({ budgets }) => {
       <h2 className="h3">
         Add New{" "}
         <span className="accent">
-          {budgets.length === 1 &&
-            `${budgets.map((budget, index) => budget.name)}`}
+          {budgets.length === 1 && `${budgets[0].name}`}
         </span>{" "}
         Expense
       </h2>
@@ -59,11 +58,9 @@ const AddExpenseForm = ({ budgets }) => {
                   .sort((a, b) => a.createdAt - b.createdAt)
                   .map((budget) => {
                     return (
-                      <>
-                        <option key={budget.id} value={budget.id}>
-                          {budget.name}
-                        </option>
-                      </>
+                      <option key={budget.id} value={budget.id}>
+                        {budget.name}
+                      </option>
                     );
                   })}
               </select>
