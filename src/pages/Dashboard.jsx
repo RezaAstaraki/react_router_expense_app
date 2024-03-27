@@ -1,5 +1,5 @@
 import React from "react";
-import { addBudget, addExpense, fetchData, wait } from "../helpers";
+import { addBudget, addExpense, fetchData, getItems, wait } from "../helpers";
 import { useLoaderData } from "react-router-dom";
 import Intro from "../components/Intro";
 import { toast } from "react-toastify";
@@ -32,16 +32,20 @@ export const createAccountAction = async ({ request }) => {
     } catch (e) {
       throw new Error("there was a problem creating your account");
     }
-  } //------------------------------------------------------------
+  } //add expenses -----------------------------------------------
   else if (formData._action === "createExpense") {
-    addExpense(
+    const expense = addExpense(
       formData.newExpense,
       formData.newExpenseAmount,
       formData.newExpenseBudget
     );
 
     try {
-      return toast.success(`${formData.newExpense} Added to ${"budgets"}`);
+      return toast.success(
+        `${formData.newExpense} Added to ${
+          getItems("budgets", "id", expense.budgetID)[0].name
+        }`
+      );
     } catch (e) {
       throw new Error("Something went wrong with add new Expense");
     }

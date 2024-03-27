@@ -77,7 +77,7 @@ const AddExpenseForm = ({ budgets }) => {
                 </>
               ) : (
                 <>
-                  Create Budget
+                  Add Expense
                   <PlusCircleIcon width={20} />
                 </>
               )}

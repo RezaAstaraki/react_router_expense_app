@@ -29,10 +29,7 @@ const Table = ({ expenses }) => {
                 <td>{expense.createAt}</td>
                 <td>
                   <Link
-                    to={
-                      "category/" +
-                      getItems("budgets", "id", expense.budgetID)[0].id
-                    }
+                    to={getItems("budgets", "id", expense.budgetID)[0].id}
                     style={{
                       "--accent": getItems("budgets", "id", expense.budgetID)[0]
                         .color,

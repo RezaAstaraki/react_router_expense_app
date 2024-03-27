@@ -40,11 +40,14 @@ export const addExpense = (name, amount, budgetID) => {
     budgetID: budgetID,
     createAt: Date.now(),
   };
+
   const existingExpenses = fetchData("expenses") ?? [];
+
   localStorage.setItem(
     "expenses",
     JSON.stringify([...existingExpenses, newExpense])
   );
+  return newExpense;
 };
 
 export const getItems = (category, key, value) => {

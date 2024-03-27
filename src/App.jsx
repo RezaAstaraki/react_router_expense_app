@@ -21,6 +21,7 @@ import Dashboard, {
 } from "./pages/Dashboard";
 import Error from "./pages/Error";
 import logoutAction from "./actions/logoutAction";
+import Category from "./pages/Category";
 
 const router = createBrowserRouter([
   {
@@ -33,6 +34,13 @@ const router = createBrowserRouter([
         element: <Dashboard />,
         loader: dashboardLoader,
         action: createAccountAction,
+        // errorElement: <Error />,
+      },
+      {
+        path: ":id",
+        element: <Category />,
+        // loader: dashboardLoader,
+        // action: createAccountAction,
         // errorElement: <Error />,
       },
       {
