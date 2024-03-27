@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { calculateSpentByBudget, currencyFormatter } from "../helpers";
 
 const BudgetCard = ({ budget }) => {
@@ -17,6 +18,9 @@ const BudgetCard = ({ budget }) => {
       </progress>
       <div className="progress-text">
         <small>{currencyFormatter(spent)} spent</small>
+        <Link to={id} className="btn ">
+          view Details
+        </Link>
         <small>{currencyFormatter(value - spent)} remaining</small>
       </div>
     </div>
