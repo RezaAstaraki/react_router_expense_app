@@ -1,9 +1,5 @@
-import {
-  ArrowPathIcon,
-  CurrencyDollarIcon,
-  PlusCircleIcon,
-} from "@heroicons/react/24/solid";
-import React, { useEffect, useRef } from "react";
+import { ArrowPathIcon, PlusCircleIcon } from "@heroicons/react/24/solid";
+import React, { useEffect, useRef, useState } from "react";
 import { useFetcher, Form } from "react-router-dom";
 
 const AddExpenseForm = ({ budgets }) => {
@@ -11,12 +7,12 @@ const AddExpenseForm = ({ budgets }) => {
   const isSubmitting = fetcher.state === "submitting";
   const formRef = useRef();
   const focusRef = useRef();
+
   useEffect(() => {
-    if (!isSubmitting) {
-      formRef.current.reset();
-      formRef.current.focus();
-    }
-  }, []);
+    formRef.current.reset();
+    focusRef.current.focus();
+    console.log("isSubmitting add expense", isSubmitting);
+  }, [isSubmitting]);
   return (
     <div className="form-wrapper">
       <h2 className="h3">
@@ -26,7 +22,7 @@ const AddExpenseForm = ({ budgets }) => {
         </span>{" "}
         Expense
       </h2>
-      <Form method="POST" className="grid-sm" ref={formRef}>
+      <fetcher.Form method="POST" className="grid-sm" ref={formRef}>
         <input type="hidden" name="_action" value="createExpense" />
         <div className="expense-inputs">
           <div className="grid-xs">
@@ -84,7 +80,7 @@ const AddExpenseForm = ({ budgets }) => {
             </button>
           </div>
         </div>
-      </Form>
+      </fetcher.Form>
     </div>
   );
 };

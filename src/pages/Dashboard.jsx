@@ -34,13 +34,12 @@ export const createAccountAction = async ({ request }) => {
     }
   } //add expenses -----------------------------------------------
   else if (formData._action === "createExpense") {
-    const expense = addExpense(
-      formData.newExpense,
-      formData.newExpenseAmount,
-      formData.newExpenseBudget
-    );
-
     try {
+      const expense = addExpense(
+        formData.newExpense,
+        formData.newExpenseAmount,
+        formData.newExpenseBudget
+      );
       return toast.success(
         `${formData.newExpense} Added to ${
           getItems("budgets", "id", expense.budgetID)[0].name

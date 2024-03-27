@@ -4,7 +4,7 @@ import { TrashIcon } from "@heroicons/react/24/solid";
 import { Link } from "react-router-dom";
 
 const Table = ({ expenses, showCategory = false, showLess = true }) => {
-  console.log("expenses", expenses);
+  // console.log("expenses", expenses);
 
   const [showLessState, setShowLessState] = useState(showLess);
   let list;

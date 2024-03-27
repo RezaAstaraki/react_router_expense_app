@@ -8,11 +8,10 @@ const AddBudgetForm = () => {
   const formRef = useRef();
   const focusRef = useRef();
 
-  const [submitting, setSubmitting] = useState(false);
-
   useEffect(() => {
     formRef.current.reset();
     focusRef.current.focus();
+    console.log("isSubmitting add budget", isSubmitting);
   }, [isSubmitting]);
 
   return (
