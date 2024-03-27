@@ -1,6 +1,5 @@
 export const wait = async (min = 0, max = 2000) => {
   const timeOut = Math.random() * max + min;
-  console.log("timeOut", timeOut);
   return new Promise((res) => setTimeout(res, timeOut));
 };
 
@@ -60,8 +59,6 @@ export const getItems = (category, key, value) => {
 //formatter
 export const timeFormatter = (t) => {
   const date = new Date(t);
-  console.log("date", date);
-  console.log("date", date.toLocaleString());
   return date.toLocaleString();
 };
 

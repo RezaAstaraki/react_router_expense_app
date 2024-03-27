@@ -58,10 +58,10 @@ const Table = ({ expenses, showCategory = false, showLess = true }) => {
             );
           })}
         </tbody>
-        {showLessState && (
-          <div onClick={() => setShowLessState(false)}>Show More</div>
-        )}
       </table>
+      {showLessState && (
+        <div onClick={() => setShowLessState(false)}>Show More</div>
+      )}
     </div>
   );
 };

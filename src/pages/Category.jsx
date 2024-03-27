@@ -11,6 +11,7 @@ const Category = () => {
   const expenses = getItems("expenses", "budgetID", id)?.sort(
     (a, b) => b.createAt - a.createAt
   );
+
   const budget = getItems("budgets", "id", id);
   return (
     <div>

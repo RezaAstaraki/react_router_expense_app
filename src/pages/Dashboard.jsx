@@ -5,6 +5,8 @@ import Intro from "../components/Intro";
 import { toast } from "react-toastify";
 import AddBudgetForm from "../components/AddBudgetForm";
 import AddExpenseForm from "../components/AddExpenseForm";
+import BudgetCard from "../components/BudgetCard";
+
 import Table from "../components/Table";
 
 //action-------------------------------------------------------
@@ -16,8 +18,6 @@ export const createAccountAction = async ({ request }) => {
   //action for add budget--------------------------------------
   if (formData._action === "addBudget") {
     try {
-      console.log("formData", formData);
-
       addBudget(formData.newBudget, formData.newBudgetAmount);
       return toast.success(`${formData.newBudget} Added to budgets`);
     } catch (e) {
@@ -88,6 +88,12 @@ const Dashboard = () => {
       ) : (
         <Intro />
       )}
+
+      <div>
+        {budgets.map((budget) => (
+          <BudgetCard key={budget.id} budget={budget} />
+        ))}
+      </div>
 
       <div>
         <h1>Expenses</h1>
