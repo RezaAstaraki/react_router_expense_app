@@ -92,6 +92,7 @@ const Dashboard = () => {
       <div>
         <h1>Expenses</h1>
         <Table
+          showCategory={true}
           expenses={expenses?.sort((a, b) => b.createAt - a.createAt) ?? []}
         ></Table>
       </div>

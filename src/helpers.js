@@ -56,3 +56,22 @@ export const getItems = (category, key, value) => {
   const res = data.filter((item) => item[key] === value);
   return res;
 };
+
+//formatter
+export const timeFormatter = (t) => {
+  const date = new Date(t);
+  console.log("date", date);
+  console.log("date", date.toLocaleString());
+  return date.toLocaleString();
+};
+
+export const currencyFormatter = (number) => {
+  // Round to two decimal places (optional)
+  const rounded = number.toFixed(2);
+
+  // Extract the first two digits (integer part)
+  const dollars = rounded.slice(0, 2);
+
+  // Combine and return with dollar sign
+  return `$${dollars}${rounded.slice(2)}`;
+};
