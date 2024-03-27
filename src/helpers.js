@@ -51,9 +51,26 @@ export const addExpense = (name, amount, budgetID) => {
 
 export const getItems = (category, key, value) => {
   const data = fetchData(category);
-
-  const res = data.filter((item) => item[key] === value);
+  const res = data?.filter((item) => item[key] === value);
   return res;
+};
+
+//total spent by budget
+export const calculateSpentByBudget = (budgetID) => {
+  const expenses = getItems("expenses", "budgetID", budgetID);
+  let sum = 0;
+  if (!expenses) return 0;
+  expenses.forEach((expense) => {
+    sum += expense.value;
+  });
+  // console.log("sum", sum);
+  // const budgetSpent = expenses.reduce((acc, expense) => {
+  //   console.log("expense", expense);
+  //   console.log("acc", acc);
+  //   acc += expense.value;
+  // }, 0);
+  // console.log("budgetSpent", budgetSpent);
+  return sum;
 };
 
 //formatter

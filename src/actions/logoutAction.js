@@ -4,6 +4,8 @@ import { deleteItem } from "../helpers";
 
 const logoutAction = () => {
   deleteItem("userName");
+  deleteItem("budgets");
+  deleteItem("expenses");
   toast.success("you deleted your account Successfully");
   return redirect("/");
 };

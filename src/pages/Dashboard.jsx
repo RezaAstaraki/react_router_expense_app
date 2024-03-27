@@ -11,8 +11,9 @@ import Table from "../components/Table";
 
 //action-------------------------------------------------------
 export const createAccountAction = async ({ request }) => {
+  if (request === null) return;
   await wait(500, 2000);
-  const data = await request.formData();
+  const data = (await request.formData()) ?? [];
   const formData = Object.fromEntries(data);
   console.log("formData", formData);
   //action for add budget--------------------------------------
@@ -75,6 +76,12 @@ const Dashboard = () => {
                 <AddBudgetForm />
                 <AddExpenseForm budgets={budgets} />
               </div>
+              <h2>Existing Budgets</h2>
+              <div className="budgets">
+                {budgets.map((budget) => (
+                  <BudgetCard key={budget.id} budget={budget} />
+                ))}
+              </div>
             </div>
           ) : (
             <div className="grid-sm">
@@ -87,20 +94,17 @@ const Dashboard = () => {
       ) : (
         <Intro />
       )}
-
-      <div>
-        {budgets.map((budget) => (
-          <BudgetCard key={budget.id} budget={budget} />
-        ))}
-      </div>
-
-      <div>
-        <h1>Expenses</h1>
-        <Table
-          showCategory={true}
-          expenses={expenses?.sort((a, b) => b.createAt - a.createAt) ?? []}
-        ></Table>
-      </div>
+      {expenses && expenses.length > 0 && (
+        <div className="grid-md">
+          <h2>Recent Expenses</h2>
+          <div>
+            <Table
+              showCategory={true}
+              expenses={expenses?.sort((a, b) => b.createAt - a.createAt) ?? []}
+            ></Table>
+          </div>
+        </div>
+      )}
     </>
   );
 };

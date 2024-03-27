@@ -14,13 +14,13 @@ const Table = ({ expenses, showCategory = false, showLess = true }) => {
     list = expenses;
   }
   return (
-    <div>
+    <div className="table">
       <table>
         <thead>
           <tr>
             {["name", "amount", "date", showCategory ? "category" : ""].map(
               (item, index) => {
-                return <td key={index}>{item}</td>;
+                return <th key={index}>{item}</th>;
               }
             )}
           </tr>
